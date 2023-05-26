@@ -25,7 +25,7 @@ public class AppArchivosProyecto {
 			try {
 				br = new BufferedReader(new FileReader(nombreArchivo));
 				while (br.ready()) {
-
+					//leer archivo
 					String linea = br.readLine();
 					String[] partesDeLinea = linea.split(",");
 					String curp = partesDeLinea[0];
@@ -34,7 +34,7 @@ public class AppArchivosProyecto {
 					String partesFecha[]=partesDeLinea[3].split("-");
 					Fecha fecha=new Fecha(Integer.parseInt(partesFecha[0]),Integer.parseInt(partesFecha[1]),Integer.parseInt(partesFecha[2]));
 					String clave=partesDeLinea[4];
-					// partesDeLinea(fecha).split("-");
+					
 					if (partesDeLinea.length == 5) {
 						// crear profesor tiempo completo
 						ProfesorTiempoCompleto unProfe =new ProfesorTiempoCompleto(curp,
@@ -48,11 +48,6 @@ public class AppArchivosProyecto {
 					for (String parte : partesDeLinea) {
 						System.out.println(parte + "\n");
 
-						/*
-						 * Profesor unProfesor= new Profesor(partesDeLinea[0], partesDeLinea[1],
-						 * partesDeLinea[2], partesDeLinea[3], partesDeLinea[4], partesDeLinea[5],
-						 * Integer.parseInt(partesDeLinea[6]));
-						 */
 
 					}
 
