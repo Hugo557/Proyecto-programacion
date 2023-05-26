@@ -30,11 +30,20 @@ public class AppArchivosProyecto {
 					String[] partesDeLinea = linea.split(",");
 					String curp = partesDeLinea[0];
 					String nombre = partesDeLinea[1];
+					String telefono= partesDeLinea[2];
+					String partesFecha[]=partesDeLinea[3].split("-");
+					Fecha fecha=new Fecha(Integer.parseInt(partesFecha[0]),Integer.parseInt(partesFecha[1]),Integer.parseInt(partesFecha[2]));
+					String clave=partesDeLinea[4];
 					// partesDeLinea(fecha).split("-");
 					if (partesDeLinea.length == 5) {
 						// crear profesor tiempo completo
+						ProfesorTiempoCompleto unProfe =new ProfesorTiempoCompleto(curp,
+																		nombre,telefono,fecha,clave);
+						
 					} else {
+						int horas=Integer.parseInt(partesDeLinea[5]);
 						// Leer horas y crear objeto de profesor por horas
+						ProfesorPorHoras otroProfe=new ProfesorPorHoras(curp,nombre,telefono,fecha,clave,horas);
 					}
 					for (String parte : partesDeLinea) {
 						System.out.println(parte + "\n");
@@ -48,8 +57,11 @@ public class AppArchivosProyecto {
 					}
 
 				}
-			} catch (IOException e) {
+			} catch (FileNotFoundException e) {
+				System.out.println("No se pudo abrir el archivo");
 				// Filenotfound
+			} catch(IOException e){
+				System.out.println("Conflicto para leer el archivo");
 			}
 
 	}
