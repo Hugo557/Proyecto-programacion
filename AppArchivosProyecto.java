@@ -19,8 +19,7 @@ import Unidad3y4.Profesor;
 import Unidad3y4.ProfesorPorHoras;
 
 public class AppArchivosProyecto {
-
-	public static void main(String[] args) {
+	public static CreacionArchivo() {
 		String nombreArchivo = null;
 		BufferedReader br = null;
 		JFileChooser chooser = new JFileChooser(".");
@@ -83,7 +82,6 @@ public class AppArchivosProyecto {
 		}
 
 	}
-
 	public static ArrayList<Persona> leerArchivo() throws ClassNotFoundException, IOException {
 		ArrayList<Persona> listaProfes=new ArrayList<>();
 		try (ObjectInputStream ois=new ObjectInputStream(new FileInputStream("Profesores.dat"))) {
@@ -98,7 +96,68 @@ public class AppArchivosProyecto {
 		System.out.println(listaProfes);
 		return listaProfes;
 	}
-	public static String menu;{
-		
+
 	}
+
+	public static void main(String[] args){
+		object [] opciones = {"Crear Archivo","Leer Archivo",
+				      "Lista de personas","Personas con salario bajo",
+				      "Cumpleaños","Salir"}
+		String tipo="";
+		do{
+		  tipo=(String) JOptionPane.showInputDialog(null, "Selecciona una opcion",
+				JOptionPane.PLAIN_MESSAGE, null, opciones, opciones[0]);
+			Switch(tipo){
+				case "Crear Archivo": 
+							CreacionArchivo();
+							break;
+				case "Leer Archivo":
+							leerArchivo();
+							break;
+				case "Lista de personas":
+			for (Persona cadaElemento : listaProfesores){
+			if (cadaElemento != null) {
+				salida += cadaElemento + "\n-------------------------\n";
+			}
+		}
+		SalidaFormateada.imprimeconScroll(salida);
+				break;
+				case "Personas con salario bajo":
+				double buscSalario = Double.parseDouble(JoptionPane.showInputDialog("Ingresa un salario:");
+				String profe = "";	      
+		for (Persona cadaElemento : listaProfesor) {
+			if (cadaElemento != null) {
+				if (((Profesor) cadaElemento).getSalario() < buscSalario){
+					profe += "Personas que ganan menos de"+buscSalario+
+						 "\nNombre: "+ ((Profesor) cadaElemento).getNombre()) "\nTelefono: "+((Profesor) cadaElemento).getTelefono();
+						+\n------------------------\n";
+				}
+			}
+		}
+					break;
+				case "Cumpleaños": 
+					int mesBusc  = Integer.parseInt(JOptionPane.showInputDialog("Ingresa el mes del cumpleaños a buscar: ");
+					String cump = "";
+				for (Persona cadaElemento : listaProfesor) {
+			if (cadaElemento != null) {
+				if (cadaElemento.getFechaNacimiento().getMes() == mesBusc)
+					cump+= "\n"+ cadaElemento.getNombre() + "\nCURP: "+ cadaElemento.getCurp()
+					+\n------------------------\n";
+				}
+			}
+		}
+		SalidaFormateada.imprimeconScroll(cump);
+				break;
+		case "Salir":
+		break;
+	}
+}
+				
+					
+			}
+		}while(!tipo.equals("Salir"));
+		
+	
+	}
+	
 }
